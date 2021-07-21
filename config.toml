@@ -1,0 +1,55 @@
+default_language = "en"
+
+base_url = "/"
+
+title = "cirho" 
+
+description = "Another useless blog"
+
+compile_sass = true 
+
+theme = "zerm"
+
+generate_feed = true
+
+build_search_index = false
+
+taxonomies = [
+   {name = "tags"},
+   {name = "categories"},
+]
+
+[markdown]
+highlight_code = true
+
+[extra]
+author = "cirho"
+
+show_author = false
+
+show_categories = true
+
+show_menu_items = 8
+
+show_tags = true
+
+center = true
+
+theme_color = "blue"
+
+
+main_menu = [
+  { url = "/about/", name = "about" },
+  { url = "/pgp/", name = "pgp" },
+  { url = "https://github.com/cirho", name = "github", external = true },
+  { url = "/categories", name = "categories" },
+  { url = "/tags", name = "tags" },
+]
+
+logo_text = "cirho"
+
+copyright = '<span>© 2021 cirho :: Powered by <a href="https://www.getzola.org/">Zola</a></span><span>:: Theme <a href="https://github.com/ejmg/zerm">zerm</a> made by <a href="https://github.com/ejmg">ejmg</a></span>'
+
+menu_more = "show more"
+
+read_more = "read more"
