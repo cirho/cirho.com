@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>Testing  - cirho</title>
+    
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="Another useless blog"/>
+
+    <meta property="og:title" content="cirho -&nbsp;Testing " />
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="&#x2F;blog&#x2F;initial&#x2F;"/>
+    <meta property="og:description" content="Very interesting description."/>
+    <link rel="preload" href="/assets/fonts/FiraCode-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/FiraCode-Bold.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/color/blue.css">
+<link rel="alternate" type="application/atom+xml" title="cirho RSS" href="/atom.xml"></head>
+    <body>
+        <div class="container center">
+<header class="header">
+    <div class="header__inner">
+        <div class="header__logo">
+            <a href="&#x2F;">
+    <div class="logo">
+        cirho
+    </div>
+</a>
+        </div>
+        <div class="menu-trigger">menu</div>
+    </div>
+    
+    <nav class="menu">
+        <ul class="menu__inner menu__inner--desktop">
+            
+            
+                    <li>
+                        <a href="
+    
+        /about
+    
+">about</a>
+                    </li>
+                
+                    <li>
+                        <a href="
+    
+        /pgp
+    
+">pgp</a>
+                    </li>
+                
+                    <li>
+                        <a href="
+    
+        https:&#x2F;&#x2F;github.com&#x2F;cirho
+    
+">github</a>
+                    </li>
+                
+                    <li>
+                        <a href="
+    
+        /categories
+    
+">categories</a>
+                    </li>
+                
+                    <li>
+                        <a href="
+    
+        /tags
+    
+">tags</a>
+                    </li>
+                
+            </ul>
+
+        <ul class="menu__inner menu__inner--mobile">
+            
+        <li>
+            <a href="
+    
+        /about
+    
+">about</a>
+        </li>
+        <li>
+            <a href="
+    
+        /pgp
+    
+">pgp</a>
+        </li>
+        <li>
+            <a href="
+    
+        https:&#x2F;&#x2F;github.com&#x2F;cirho
+    
+">github</a>
+        </li>
+        <li>
+            <a href="
+    
+        /categories
+    
+">categories</a>
+        </li>
+        <li>
+            <a href="
+    
+        /tags
+    
+">tags</a>
+        </li>
+        </ul>
+    </nav>
+
+    </header>
+<div class="content"><article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="&#x2F;blog&#x2F;initial&#x2F;">Testing </a>
+            </h1>
+            
+    <div class="post-meta">
+        <span class="post-date">2021.07.21
+                </span>
+
+        <span class="post-author"></span>
+
+        
+
+    
+    :: {<a href="/categories/programming/">programming</a>} 
+
+            
+    ::
+    #<a href="/tags/rust/">rust</a>
+        
+    
+            
+        
+    </div>
+
+        </header><h2 id=""></h2>
+<h3 id="code-sample-from-tokio-readme">Code sample from <code>Tokio</code> readme:</h3>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>tokio::net::TcpListener;
+</span><span style="color:#b48ead;">use </span><span>tokio::io::{AsyncReadExt, AsyncWriteExt};
+</span><span>
+</span><span>#[</span><span style="color:#bf616a;">tokio</span><span>::</span><span style="color:#bf616a;">main</span><span>]
+</span><span>async </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> listener = TcpListener::bind(&quot;</span><span style="color:#a3be8c;">127.0.0.1:8080</span><span>&quot;).await?;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">loop </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let </span><span>(</span><span style="color:#b48ead;">mut</span><span> socket, _) = listener.</span><span style="color:#96b5b4;">accept</span><span>().await?;
+</span><span>
+</span><span>        tokio::spawn(async </span><span style="color:#b48ead;">move </span><span>{
+</span><span>            </span><span style="color:#b48ead;">let mut</span><span> buf = [</span><span style="color:#d08770;">0</span><span>; </span><span style="color:#d08770;">1024</span><span>];
+</span><span>
+</span><span>            </span><span style="color:#65737e;">// In a loop, read data from the socket and write the data back.
+</span><span>            </span><span style="color:#b48ead;">loop </span><span>{
+</span><span>                </span><span style="color:#b48ead;">let</span><span> n = </span><span style="color:#b48ead;">match</span><span> socket.</span><span style="color:#96b5b4;">read</span><span>(&amp;</span><span style="color:#b48ead;">mut</span><span> buf).await {
+</span><span>                    </span><span style="color:#65737e;">// socket closed
+</span><span>                    Ok(n) </span><span style="color:#b48ead;">if</span><span> n == </span><span style="color:#d08770;">0 </span><span>=&gt; </span><span style="color:#b48ead;">return</span><span>,
+</span><span>                    Ok(n) =&gt; n,
+</span><span>                    Err(e) =&gt; {
+</span><span>                        eprintln!(&quot;</span><span style="color:#a3be8c;">failed to read from socket; err = </span><span style="color:#d08770;">{:?}</span><span>&quot;, e);
+</span><span>                        </span><span style="color:#b48ead;">return</span><span>;
+</span><span>                    }
+</span><span>                };
+</span><span>
+</span><span>                </span><span style="color:#65737e;">// Write the data back
+</span><span>                </span><span style="color:#b48ead;">if let </span><span>Err(e) = socket.</span><span style="color:#96b5b4;">write_all</span><span>(&amp;buf[</span><span style="color:#d08770;">0</span><span>..n]).await {
+</span><span>                    eprintln!(&quot;</span><span style="color:#a3be8c;">failed to write to socket; err = </span><span style="color:#d08770;">{:?}</span><span>&quot;, e);
+</span><span>                    </span><span style="color:#b48ead;">return</span><span>;
+</span><span>                }
+</span><span>            }
+</span><span>        });
+</span><span>    }
+</span><span>}
+</span></code></pre>
+
+
+        
+    
+
+        
+        
+    </article></div>
+    <div class="pagination">
+        <div class="pagination__buttons">
+            </div>
+    </div>
+<footer class="footer">
+                    <div class="footer__inner"><div class="copyright copyright--user"><span>© 2021 cirho :: Powered by <a href="https://www.getzola.org/">Zola</a></span><span>:: Theme <a href="https://github.com/ejmg/zerm">zerm</a> made by <a href="https://github.com/ejmg">ejmg</a></span></div>
+    <script type="text/javascript" src="/assets/js/main.js"></script>
+</div>
+                    
+
+                </footer></div>
+    </body>
+</html>
